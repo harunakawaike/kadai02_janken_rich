@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>筋トレじゃんけんNEO</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 左：過去履歴サイドバー -->
+    <aside id="sidebar">
+        <div class="sidebar-header">
+            <span class="sidebar-icon"></span>
+            <h2>過去履歴</h2>
+        </div>
+        <div id="history-list">
+            <!-- jsで動的に追加 -->
+            <p class="no-history">履歴はまだありません</p> 
+        </div>
+        <button id="clear-history-btn">履歴を削除</button>
+    </aside> 
+
+    <!-- メインエリア -->
+    <main id="main">
+
+        <!-- 左上：タイトル -->
+        <header id="app-header">
+            <h1 id="app-title">筋トレじゃんけん<span>NEO</span></h1>
+            <p id="app-subtitle">5回戦で今日の筋トレメニューが決定</p>
+        </header> 
+
+        <!-- 中央：じゃんけんエリア -->
+        <section id="janken-area">
+
+            <!-- 対戦状況 -->
+            <div id="battle-status">
+                <span id="round-label">第 <strong id="current-round">1</strong>回戦</span>
+                <div id="score-board">
+                    <div class="score-item-win">
+                        <span class="score-label">勝ち</span>
+                        <span class="score-num" id="score-win">0</span>
+                    </div>
+                    <div class="score-item-draw">
+                        <span class="score-label">あいこ</span>
+                        <span class="score-num" id="score-draw">0</span>
+                    </div>
+                    <div class="score-item-lose">
+                        <span class="score-label">負け</span>
+                        <span class="score-num" id="score-lose">0</span>
+                    </div>
+                </div>
+            </div> 
+
+
+            <!-- 手の表示エリア -->
+            <div id="hands-display">
+                <div class="hands-box" id="player-hand-box">
+                    <p class="hand-label">あなた</p>
+                    <div class="hand-emoji" id="player-hand">✊</div>
+                </div>
+                <div id="vs-label">VS</div>
+                <div class="hand-box" id="cpu-box">
+                    <p class="hand-label">CPU</p>
+                    <div class="hand-emoji" id="cpu-hand">✊</div>
+                </div>
+            </div> 
+
+
+            <!-- 結果表示 -->
+            <div id="result-desplay">
+                <p id="result-test">手を選んでスタート！</p>
+            </div>
+
+            <!-- じゃんけんボタン -->
+            <div id="janken-button">
+                <button class="janken-btn" data-hand="rock">
+                    <span class="btn-emoji">✊</span>
+                    <span class="btn-label">グー</span>
+                </button>
+                <button class="janken-btn" data-hand="scissors">
+                    <span class="btn-emoji">✌️</span>
+                    <span class="btn-label">チョキ</span>
+                </button>
+                <button class="janken-btn" data-hand="paper">
+                    <span class="btn-emoji">✋</span>
+                    <span class="btn-label">パー</span>
+                </button>
+            </div>
+
+
+            <!-- ゲーム終了後のリセット -->
+            <button id="reset-btn" class="hidden">もう一度プレイ</button>
+
+        </section> 
+
+    </main>
+
+
+    <!-- 右：本日の筋トレメニューエリア -->
+    <aside id="menu-area">
+        <div class="menu-header">
+            <span class="menu-icon">💪</span>
+            <h2>本日の筋トレメニュー</h2>
+        </div>
+        <div id="menu-list">
+            <!-- jsで動的に追加 -->
+            <p class="no-menu">じゃんけんをするとメニューが決まります</p> 
+        </div>
+        <div id="menu-summary" class="hidden">
+            <p id="summary-text"></p>
+        </div>
+    </aside> 
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="app.js"></script> 
+</body>
+</html>
