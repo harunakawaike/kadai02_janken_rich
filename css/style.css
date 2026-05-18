@@ -1,1 +1,42 @@
 /* 基本設定＆リセット */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --bg-darkest:#0a0a0a;
+    --bg-dark: #111111;
+    --bg-mid:#1a1a1a;
+    --bg-card:#222222;
+    --bg-hover:#2a2a2a;
+    --border:#333333;
+    --border:#444444;
+
+    --text-primary:#f0f0f0;
+    --text-secondary:#aaaaaa;
+    --text-muted:#666666;
+
+    --accent-win:#4ade80; /*緑*/
+    --accent-draw:#facc15; /*黄*/
+    --accent-lose:#f87171; /*赤*/
+    --accent-main:#e2e8f0; /*ライトグレー*/
+
+    --font-main:'Segoe UI', 'Helvetica Neue', Ariel, 'Hiragino Kaku Gothic ProN',sans-serif;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --transition: 0.25s ease;
+}
+
+
+body{
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--bg-darkest);
+    color: var(--test-primary);
+    font-family: var(--font-main);
+}
+
+/* 左サイドバー：過去履歴]*/
