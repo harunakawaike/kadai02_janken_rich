@@ -5,7 +5,7 @@
 - 今日の筋トレメニューをじゃんけんで決める
 
 ## ③アプリのデプロイURL
-デプロイしている場合はURLを記入（任意）
+https://harunakawaike.github.io/kadai02_janken_rich/
 
 ## ④アプリのログイン用IDまたはPassword（ある場合）
 - ID: -
