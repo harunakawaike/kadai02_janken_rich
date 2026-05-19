@@ -1,4 +1,4 @@
-$(function () {
+$(function () { // jQueryの書き方
     const hands = {
         rock: "✊",
         scissors: "✌️",
@@ -11,6 +11,7 @@ $(function () {
         paper: "パー"
     };
 
+    //筋トレメニュー
     const winMenus = [
         "プッシュアップ 10回",
         "スクワット 15回",
@@ -25,40 +26,41 @@ $(function () {
     ];
 
     const drawMenus = [
-        "プランク 30秒",
+        "プランク・サイドプランク 2分×3セット",
         "マウンテンクライマー 20回",
         "ジャンピングジャック 20回",
-        "レッグレイズ 12回",
-        "ランジ 左右10回",
+        "レッグレイズ 30回",
+        "ランジ 左右30回",
         "バイシクルクランチ 20回",
-        "ウォールシット 30秒",
+        "ラットプルダウン 12回×3セット",
         "ツイスト腹筋 20回",
-        "ニートゥーチェスト 15回",
+        "サイドレイズ 20回×3セット",
         "スクワットキープ 25秒"
     ];
 
     const loseMenus = [
-        "バーピー 10回",
+        "バーピー 20回",
         "プッシュアップ 20回",
         "ジャンプスクワット 20回",
-        "プランク 60秒",
+        "フルボトムスクワット 8回×3セット",
         "マウンテンクライマー 40回",
         "ランジジャンプ 20回",
         "腹筋 30回",
-        "レッグレイズ 25回",
+        "ブルガリアンスクワット 15回×2セット",
         "ワイドプッシュアップ 15回",
         "ハイニー 45秒"
     ];
 
-    let round = 1;
-    let win = 0;
-    let draw = 0;
-    let lose = 0;
-    let todayMenus = [];
+    //ゲームの進行状況を保存
+    let round = 1; //今何回戦か
+    let win = 0; //勝った回数
+    let draw = 0; //あいこの回数
+    let lose = 0; //負けた回数
+    let todayMenus = []; //今日でた筋トレメニュー
 
     loadHistory();
 
-    $(".janken-btn").on("click", function () {
+    $(".janken-btn").on("click", function () { //ボタンを押した時の処理
         if (round > 5) return;
 
         const playerHand = $(this).data("hand");
@@ -83,7 +85,7 @@ $(function () {
 
         round++;
 
-        if (round <= 5) {
+        if (round <= 5) { //5回終わったらゲーム終了
             $("#current-round").text(round);
         } else {
             finishGame();
@@ -99,7 +101,7 @@ $(function () {
         loadHistory();
     });
 
-    function getWeightedCpuHand(playerHand) {
+    function getWeightedCpuHand(playerHand) { //CPUの手をランダムに決める関数
         const cpuWinsAgainst = {
             rock: "paper",
             scissors: "rock",
@@ -118,7 +120,7 @@ $(function () {
             cpuWinsAgainst[playerHand],
             cpuLosesAgainst[playerHand],
             playerHand
-        ];
+        ]; //プレイヤーが少し負けやすい
 
         return choices[Math.floor(Math.random() * choices.length)];
     }
@@ -135,7 +137,7 @@ $(function () {
         }
 
         return "lose";
-    }
+    } //じゃんけんの勝敗を判定
 
     function updateScore(result) {
         if (result === "win") {
@@ -148,7 +150,7 @@ $(function () {
             lose++;
             $("#score-lose").text(lose);
         }
-    }
+    } //勝ち・負け・あいこの回数を増やして、画面の数字も更新
 
     function getMenu(result) {
         let list;
@@ -162,7 +164,7 @@ $(function () {
         }
 
         return list[Math.floor(Math.random() * list.length)];
-    }
+    } //勝敗に応じて、使うメニューリストを変えている
 
     function addMenu(result, menu) {
         $(".no-menu").remove();
@@ -175,7 +177,7 @@ $(function () {
                 <p class="menu-name">${menu}</p>
             </div>
         `);
-    }
+    } //右側の「本日の筋トレメニュー」に、結果とメニューを追加していく
 
     function finishGame() {
         $(".janken-btn").prop("disabled", true);
@@ -187,7 +189,9 @@ $(function () {
         $("#result-test").text("5回戦終了！今日の筋トレメニューが決定しました");
 
         saveHistory();
-    }
+    } //5回終わったらじゃんけんボタン押せなくなる
+     //もう１度プレイのボタンを表示
+     //結果まとめwp表示、履歴に保存
 
     function saveHistory() {
         const history = JSON.parse(localStorage.getItem("trainingJankenHistory")) || [];
@@ -204,7 +208,7 @@ $(function () {
         loadHistory();
     }
 
-    function loadHistory() {
+    function loadHistory() { //保存されている履歴を左側の過去履歴に表示
         const history = JSON.parse(localStorage.getItem("trainingJankenHistory")) || [];
 
         $("#history-list").empty();
@@ -230,7 +234,7 @@ $(function () {
         });
     }
 
-    function resetGame() {
+    function resetGame() { //「もう１度プレイ」を押した時に、ゲームを初期状態に戻す
         round = 1;
         win = 0;
         draw = 0;
